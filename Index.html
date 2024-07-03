@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live News Streams</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-bar-title">News room</div>
+    <hr class="divider">
+    <div class="center-link">
+      <a href="https://www.tzevaadom.co.il/" target="_blank">צופר</a>
+      <select id="warMaps" onchange="navigateToMap()">
+        <option value="">War maps</option>
+		<option value="">-------------</option>
+        <option value="https://hezbollah.liveuamap.com/">Map 1: Hezbollah</option>
+        <option value="https://lebanon.liveuamap.com/">Map 2: Lebanon</option>
+        <option value="https://israelpalestine.liveuamap.com/">Map 3: Israel-Palestine</option>
+		<option value="">-</option>
+		<option value="https://health.liveuamap.com/en/2023/22-march-symptoms-of-anthrax-revealed-in-one-more-third-resident">Map 4: Ukraine</option>
+        <option value="https://isis.liveuamap.com/">Map 5: Isis</option>
+        <option value="https://iran.liveuamap.com/">Map 6: Iran</option>
+		<option value="">-</option>
+        <option value="https://health.liveuamap.com/en/2023/22-march-symptoms-of-anthrax-revealed-in-one-more-third-resident">Map 7: Epidemics</option>
+		<option value="https://eq.gsi.gov.il/heb/earthquake/lastEarthquakes.php">Map 8: Earthquakes</option>
+	  </select>
+	  <select id="newsSites" onchange="navigateToNewsSite()">
+        <option value="">News Sites</option>
+		<option value="">---------------</option>
+        <option value="https://www.n12.co.il/">N12</option>
+        <option value="https://www.0404.co.il/">0404</option>
+		<option value="https://www.jpost.com/">Jerusalem Post</option>
+		<option value="https://www.timesofisrael.com/">Times of Israel</option>
+		<option value="https://www.zman.co.il/">זמן ישראל</option>
+        <option value="https://rotter.net/">Rotter</option>
+		<option value="">-</option>
+		<option value="https://edition.cnn.com/">CNN</option>
+        <option value="https://www.nbcnews.com/">NBC</option>
+        <option value="https://apnews.com/">AP News</option>
+        <option value="https://www.i24news.tv/en">i24News</option>
+		<option value="https://www.nytimes.com/international/">New-York Times</option>
+		<option value="https://www.bbc.com/">BBC</option>
+		<option value="https://www.reuters.com/">Reuters</option>
+		<option value="https://www.wsj.com/">Wall Street Journal</option>
+		<option value="https://www.washingtonpost.com/">The Washington Post</option>
+		<option value="https://www.foxnews.com/">Fox news</option>
+		<option value="">-</option>
+        <option value="https://www.aljazeera.com/">Al-Jazeera</option>
+		<option value="https://english.almayadeen.net/">Al-Mayadeen</option>
+		<option value="https://www.alhurra.com/">Al-hurra </option>
+		<option value="https://english.alarabiya.net/">Al-Arabiya</option>
+		<option value="https://english.almanar.com.lb/">Al-Manar</option>
+		<option value="https://www.alalam.ir/">Al-Alam</option>
+		<option value="https://www.alhadath.net/">Al-Hadath</option>
+	  </select>
+    </div>
+    <hr class="divider">
+    <div class="checkbox-group">
+      <input type="checkbox" id="arabCheckbox" checked> Arab
+      <input type="checkbox" id="israelCheckbox" checked> Israel
+      <input type="checkbox" id="usaCheckbox" checked> USA
+      <input type="checkbox" id="iranCheckbox" checked> Iran
+    </div>
+    <select id="gridSelector" onchange="changeGrid()">
+	    <option value="3x7">3x7 (Vertical)</option>
+      <option value="7x4">7x4</option>
+      <option value="7x3">7x3</option>
+      <option value="6x4">6x4</option>
+      <option value="6x3">6x3</option>
+      <option value="5x4">5x4</option>
+      <option value="5x3">5x3</option>
+	    <option value="4x7">4x7 (Vertical)</option>
+      <option value="4x4">4x4</option>
+      <option value="4x3">4x3</option>
+      <option value="4x2">4x2</option>
+      <option value="3x2">3x2</option>
+	    <option value="2x5">2x5 (Vertical)</option>
+      <option value="2x2">2x2</option>
+      <option value="1x1">1x1</option>
+
+    </select>
+  </div>
+    <div id="gridContainer" class="grid-container">
+    <div class="video-container">
+    <h2>Al-Manar (Arab)</h2>
+    <video id="video1" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Al-Arabiya (Arab)</h2>
+    <video id="video2" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Alhurra (Arab)</h2>
+    <video id="video3" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Almayadeen (Arab)</h2>
+    <video id="video4" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Al Jazeera Qatar English (Arab)</h2>
+    <video id="video5" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Al-Jazeera (Arab)</h2>
+    <video id="video29" controls></video>
+  </div> 
+  <div class="video-container">
+    <h2>Al-Jazeera English (Arab)</h2>
+    <video id="video6" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>IraneFarda TV (Iran)</h2>
+    <video id="video7" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Simaye Azadi (Iran)</h2>
+    <video id="video8" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Iran International (Iran)</h2>
+    <video id="video9" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>Irinn (Iran)</h2>
+    <video id="video10" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>SNN (Iran)</h2>
+    <video id="video11" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>PressTV (Iran)</h2>
+    <video id="video12" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>כאן 11 (Israel)</h2>
+    <video id="video13" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>ערוץ 12 (Israel)</h2>
+    <video id="video14" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>ערוץ 13 (Israel)</h2>
+    <video id="video15" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>ערוץ 14 (Israel)</h2>
+    <video id="video16" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>i24News (Israel)</h2>
+    <video id="video20" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>News12 New York (USA)</h2>
+    <video id="video17" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>CNN (USA)</h2>
+    <video id="video18" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>NBC (USA)</h2>
+    <video id="video19" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>FOX news (USA)</h2>
+    <video id="video21" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>LiveNOW from FOX 3 (USA)</h2>
+    <video id="video22" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>ABC News (USA)</h2>
+    <video id="video23" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>CBS (USA)</h2>
+    <video id="video24" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>SkyNews (USA)</h2>
+    <video id="video25" controls></video>
+  </div>
+  <div class="video-container">
+    <h2>BBC (USA)</h2>
+    <video id="video26" controls></video>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="script.js"></script>
+</body>
+</html>
